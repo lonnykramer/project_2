@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Web Design LK Home</title>
+
+  <!-- Bootstrap CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  <link rel="stylesheet" href="style.css">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+
+  <!-- If wanting/needing two CSS files, one should to be commented out or they will cascade down on each other. -->
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <!-- Creates the Overall Grid -->
+  <div class="container">
+
+      <nav class="navbar">
+          <a class="navbar-brand">Latitude Impacts</a>
+          <ul>
+              <li>
+                <a href="index.html">Latitude Home</a>
+              </li>
+              
+                         
+              <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Plots
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="cloudiness.html">Cloudiness</a>
+                        <a class="dropdown-item" href="humidity.html">Humidity</a>
+                        <a class="dropdown-item" href="temperature.html">Temperature</a>
+                        <a class="dropdown-item" href="wind.html">Wind Speed</a>
+                      </div>
+                    </li>
+                
+               <li>
+                  <a href="comparisons.html">Comparisons</a>
+                </li>
+               <li>
+                <a href="cities_data.html">Data</a>
+              </li>      
+        
+        
+        
+        
+        </ul>
+    </nav>
+
+    <!-- Row 1 -->
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Latitude Impacts Comparison Charts</h1>
+      </div>
+    </div>
+
+
+    <!-- Row 2 -->
+    <div class="row">
+        <div class="col-md-12">
+            <h3> Scatter Plot Comparisons</h3>
+            <a href="http://www.google.com">
+            <img src="./visualizations/WeatherPy_Lat_Cloudiness.png" alt="Cloudiness" class="compare_charts">
+            </a>
+            <a href="http://www.cnn.com">
+            <img src="./visualizations/WeatherPy_Lat_Humidity.png" alt="Humidity" class="compare_charts">
+            </a>
+            <a href="http://www.tfltruck.com">
+            <img src="./visualizations/WeatherPy_Lat_Temp.png" alt="Temperature" class="compare_charts">
+            </a>
+            <a href="http://www.mmaweekly.com">
+            <img src="./visualizations/WeatherPy_Lat_Wind.png" alt="Wind" class="compare_charts">
+            </a>
+        </div>
+
+
+
+
+
+
+</body>
+
+</html>

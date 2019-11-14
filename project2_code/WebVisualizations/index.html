@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Pollutants Home</title>
+
+  <!-- Bootstrap CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+
+
+  <!-- If wanting/needing two CSS files, one should to be commented out or they will cascade down on each other. -->
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<!-- Creates the Overall Grid -->
+<div class="container">
+
+  <!-- Creates the Overall Grid -->
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="index.html">STL Pollutants</a>
+
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      <img id="drop_img" width="50" height="50" src="./visualizations/dropdown.png" alt="Drop_img">
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Pollutants
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="cloudiness.html">PM25</a>
+            <a class="dropdown-item" href="humidity.html">CO</a>
+            <a class="dropdown-item" href="temperature.html">NO</a>
+            <a class="dropdown-item" href="wind.html">Pollutant #4</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="https://www.cdc.gov/air/pollutants.htm" target="_blank">Airborne Pollutants</a>
+        </li>
+        <li>
+          <!-- <a href="cities_data.html">Data</a> -->
+          <a href="pollutants_data.html">Data</a>
+        </li>
+    </div>
+
+
+
+
+
+    </ul>
+  </nav>
+
+  <!-- Row 1 -->
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Pollution in the STL Metro Area</h1>
+    </div>
+  </div>
+
+
+  <!-- Row 2 -->
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Project Summary: Looking at various airborne pollutants in STL </h2>
+
+      <section id="figure">
+        <img id="latitude" width="300" height="200" src="./visualizations/stl.png" alt="Latitude">
+      </section>
+
+      <p>The intent of the project was to analyze the various airborne pollutants reported over the St. Louis metropolitan
+        area.</p>
+      </br>
+      <p> <strong>Air and Health: </strong>
+          Since the 1950s, air quality has been a major public health and environmental concern. Local, state, and national programs 
+          have helped us learn more about the problems and how to solve them.  National air quality has improved since the early 
+          1990's, but many challenges remain in protecting public health and the environment from air quality problems.  CDC works
+          closely with the U.S. Environmental Protection Agency to provide air quality data on the tracking network and to better 
+          understand how air pollution affects our health. The Tracking Network includes information about the possible health 
+          effects of exposure to ozone, particulate matter (PM2.5), benzene, and formaldehyde.</p>
+      </br>   
+      <a class="hypertext" href="https://ephtracking.cdc.gov/showAirHealth" target="_blank">https://ephtracking.cdc.gov/showAirHealth </a>
+
+    </div>
+    <div class="col-md-4">
+      <h3> Visualizations</h3>
+      <a href="cloudiness.html">
+        <img src="./visualizations/WeatherPy_Lat_Cloudiness.png" alt="Cloudiness" class="thumbs">
+      </a>
+      <a href="humidity.html">
+        <img src="./visualizations/WeatherPy_Lat_Humidity.png" alt="Humidity" class="thumbs">
+      </a>
+      <a href="temperature.html">
+        <img src="./visualizations/WeatherPy_Lat_Temp.png" alt="Temperature" class="thumbs">
+      </a>
+      <a href="wind.html">
+        <img src="./visualizations/WeatherPy_Lat_Wind.png" alt="Wind" class="thumbs">
+      </a>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+
+</html>
