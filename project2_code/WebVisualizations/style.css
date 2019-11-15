@@ -45,13 +45,23 @@ h3 {
     background-color: yellow;
   }
   
-  h4 {
-    margin-top: 15px;
-    font-size: 20px;
-    text-align: center;
-    background-color: #7df57d;
+h4 {
+  margin-top: 15px;
+  font-size: 20px;
+  text-align: center;
+  background-color: #7df57d;
+}
 
-  }
+.map_titles {
+  margin-top: 5px;
+  font-size: 15px;
+  text-align: center;
+  background-color: #7dc5f5;
+}
+
+
+
+
 /* h8 heading tags */
 .hypertext {
   font-size: 12px;
@@ -109,11 +119,13 @@ h3 {
 .compare_charts2 {
   margin-top: 5px;
   margin-bottom: 5px;
-  width: 500px;
+  /* width: 500px; */
   /* display: block; */
   margin-left: auto;
   margin-right: auto;
   padding: 10px;
+  max-width: 45%;
+    max-height: 45%;
 }
 
 
