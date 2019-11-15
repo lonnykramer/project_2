@@ -6,7 +6,8 @@
 
 /* body heading tag */
 body {
-    background-color: blanchedalmond;
+    /* background-color: blanchedalmond; */
+    background-color: #FFFADA;
 }
 
 
@@ -43,7 +44,14 @@ h3 {
     text-align: center;
     background-color: yellow;
   }
+  
+  h4 {
+    margin-top: 15px;
+    font-size: 20px;
+    text-align: center;
+    background-color: #7df57d;
 
+  }
 /* h8 heading tags */
 .hypertext {
   font-size: 12px;
@@ -62,6 +70,28 @@ h3 {
     /* margin-left: 50; */
     /* margin-right: 25; */
     
+}
+
+/* img heading tag */
+.particles {
+  width: 500px;
+}
+
+.pm25_image {
+  width: 700px;
+}
+
+.ozone_image {
+  width: 700px;
+}
+
+.legal {
+  font-size: 12px;
+}
+
+.source {
+  font-size: 12px;
+  color: blue;
 
 }
 
@@ -147,4 +177,6 @@ h3 {
       background-color: purple;}
     
   }
+
+
 
