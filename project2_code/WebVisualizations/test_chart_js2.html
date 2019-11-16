@@ -20,6 +20,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 
 
@@ -72,70 +73,61 @@
         </div>
 
 
-
         </ul>
     </nav>
 
-    <!-- Row 1 -->
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Airborne Pollutants Across the USA</h1>
-        </div>
-    </div>
+    <!-- **************************** -->
+    <canvas id="marksChart" width="200" height="200">
+        <script>
+            var marksCanvas = document.getElementById("marksChart");
 
-    <!-- Row 2 -->
-    <div class="col-md-12">
-        <h3> Breathe Deeply?</h3>
-
-
-    </div>
-    <!-- Row 3a-->
-    <div class="row">
-        <div class="col-2 col-md-6">
-            <h3 class="map_titles">Beautiful Map1</h3>
-        </div>
-        <div class="col-2 col-md-6">
-            <h3 class="map_titles">Beautiful Map2</h3>
-        </div>
-    </div>
-
-    <!-- Row 3b-->
-    <div class="col-3 col-md-12"></div>
-    <a href="pm10.html">
-        <img src="./visualizations/testmap1.png" alt="pm10_map" class="compare_charts">
-        <!-- http://berkeleyearth.org/air-quality-real-time-map/ -->
-    </a>
-
-    <a href="pm25.html">
-        <img src="./visualizations/testmap2.png" alt="pm25_map" class="compare_charts">
-        <!-- https://gispub.epa.gov/airnow/ -->
-    </a>
-
-    <!-- Row 4a-->
-    <div class="row">
-        <div class="col-2 col-md-6">
-            <h3 class="map_titles">Beautiful Map3</h3>
-        </div>
-        <div class="col-2 col-md-6">
-            <h3 class="map_titles">Beautiful Map4</h3>
-        </div>
-    </div>
+            var marksData = {
+                labels: ["PM10", "PM25", "CO", "SO2", "O3", "NO2"],
+                datasets: [{
+                    label: "Los Angeles",
+                    backgroundColor: "rgba(200,0,0,0.2)",
+                    data: [65, 75, 70, 80, 60, 80]
+                }, {
+                    label: "Chicago",
+                    backgroundColor: "rgba(0,0,200,0.2)",
+                    data: [54, 65, 60, 70, 70, 75]
+                }, {
+                    label: "St. Louis",
+                    backgroundColor: "yellow",
+                    data: [4, 75, 35, 98, 31, 54]
+                }, {
+                    label: "New York",
+                    backgroundColor: "green",
+                    data: [12, 43, 98, 67, 88, 75]
+                }, {
+                    label: "Miami",
+                    backgroundColor: "pink",
+                    data: [45, 65, 43, 70, 44, 66]
+                },
 
 
-    <!-- Row 4b -->
-    <div class="col-3 col-md-12"></div>
-    <a href="co_pollutant.html">
-        <img src="./visualizations/testmap3.png" alt="co_map" class="compare_charts2">
-        <!-- https://earthobservatory.nasa.gov/global-maps/MOP_CO_M       -->
-    </a>
-    <a href="no_pollutant.html">
-        <img src="./visualizations/testmap4.png" alt="no_map" class="compare_charts2">
-        <!-- https://phys.org/news/2019-03-nitrogen-dioxide-pollution.html -->
-    </a>
-
-</div>
 
 
-</body>
+                ]
+            };
+
+            var radarChart = new Chart(marksCanvas, {
+                type: 'radar',
+                data: marksData
+            });
+
+
+
+        </script>
+    </canvas>
+
+    <!-- ******************************** -->
+
+
+
+
+
+
+    </body>
 
 </html>
