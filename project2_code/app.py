@@ -40,6 +40,7 @@ o3_US = Base.classes.o3
 pm10_US = Base.classes.pm10
 pm25_US = Base.classes.pm25
 so2_US = Base.classes.so2
+combined_US = Base.classes.combinedaq
 
 
 @app.route("/")
@@ -59,6 +60,43 @@ def index():
 #     # Return a list of the column names (sample names)
 #     return jsonify(list(df.columns)[2:])
 
+
+@app.route("/metadata/all")
+def combinedaq():
+
+    # """Return the MetaData for a given sample."""
+    sel = [
+        combined_US.location,
+        combined_US.parameter,
+        # combined_US.unit,
+        combined_US.country,
+        combined_US.city,
+        combined_US.coordinates_latitude,
+        combined_US.coordinates_longitude,
+        combined_US.avgvalue,
+    ]
+
+    results = db.session.query(*sel).all()
+    print(results)
+
+    # Create a dictionary entry for each row of metadata information
+    airquality_combined = []
+    
+    for result in results:
+        airquality = {}
+        airquality["location"] = result[0]
+        airquality["parameter"] = result[1]
+        # airquality["unit"] = result[2].decode('utf-8')
+        airquality["country"] = result[2]
+        airquality["city"] = result[3]
+        airquality["coordinates_latitude"] = result[4]
+        airquality["coordinates_longitude"] = result[5]
+        airquality["avgvalue"] = result[6]
+        airquality_combined.append(airquality)
+
+
+    print(airquality_combined)
+    return jsonify(airquality_combined)
 
 @app.route("/metadata/bc")
 def bc():
