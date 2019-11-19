@@ -154,7 +154,7 @@ function createMarkers(response) {
 // Perform an API call to the Citi Bike Station Information endpoint
 function buildSomething(test) {
   console.log("ran buildSomething");
-  d3.json(/metadata/all).then(function(pollutant) {
+  d3.json(metadata/all).then(function(pollutant) {
   console.log("calling json")
     // var dirtyAir = [parameter];
     // console.log(dirtyAir);
@@ -239,4 +239,5 @@ function updateLegend(time, stationCount) {
     "<p class='healthy'>NO2: " + stationCount.NO2 + "</p>",
     "<p class='cow'>BC: " + stationCount.BC + "</p>"
   ].join("");
+}
 }
