@@ -1,3 +1,4 @@
+console.log("first line");
 // Create the tile layer that will be the background of our map
 var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}", {
   attribution: "Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"http://mapbox.com\">Mapbox</a>",
@@ -61,41 +62,43 @@ info.onAdd = function() {
 info.addTo(map);
 console.log(map);
 
-function createMarkers(response) {
+console.log("before createMarkers");
+function createMarkers(airquality_combined) {
   console.log("beginning of createMarkers");
+  console.log(airquality_combined);
 
   // Pull the "features" property off of response.data
-  var features = response.features;
+  var parameters = airquality_combined.parameter;
   //console.log("features[1]")       // works
   //console.log(features[1])        // works
   // data comes from https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson
 
   // Initialize an array to hold quake markers
-  var quakeMarkers = [];
+  var avgvalueMarkers = [];
 
   // console.log("right before for loop");       // works
 
   // Loop through the features array
-  for (var index = 0; index < features.length; index++) {
-      var feature = features[index];
+  for (var index = 0; index < parameters.length; index++) {
+      var parameter = parameters[index];
       // console.log(feature);       // works
 
 
-      function chooseColor(feature) {
-          var mag = feature.properties.mag;
-          if (mag >= 6.0) {
+      function chooseColor(parameter) {
+          var avgvalue = parameter.avgvalue;
+          if (avgvalue >= 6.0) {
               return "darkred";
           }
-          else if (mag >= 5.0) {
+          else if (avgvalue >= 5.0) {
               return "red";
           }
-          else if (mag >= 4.0) {
+          else if (avgvalue >= 4.0) {
               return "orange";
           }
-          else if (mag >= 3.0) {
+          else if (avgvalue >= 3.0) {
               return "yellow";
           }
-          else if (mag >= 2.0) {
+          else if (avgvalue >= 2.0) {
               return "green";
           }
           else {
@@ -108,11 +111,11 @@ function createMarkers(response) {
 
 
 
-      var quakeMarker = L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], { color: chooseColor(feature) })
+      var quakeMarker = L.circleMarker([parameter.coordinates_latitude, parameter.coordinates_longitude], { color: chooseColor(parameter) })
           // var quakeMarker = L.marker([19.844, -155.371])      // manual coordinates work
-          .bindPopup("<h3>Location: " + feature.properties.place + "<h3><h3>Magnitude: " + feature.properties.mag + "<h3>Felt: " +
-              feature.properties.felt + "<h3>Coordinates: " + feature.geometry.coordinates[1] + ", " + feature.geometry.coordinates[0] +
-              "<br><a href='" + feature.properties.url + "'>Add'l Details</a>" +
+          .bindPopup("<h3>Location: " + parameter.city + "<h3><h3>Magnitude: " + parameter.avgvalue + "<h3>Felt: " +
+          parameter.parameter + "<h3>Coordinates: " + parameter.coordinates_latitude + ", " + parameter.coordinates_longitude +
+              "<br><a href='" + "http://www.cnn.com" + "'>Add'l Details</a>" +
               // "<br><a href='" + "http://www.cnn.com" + "'>Radar</a>")
               "<br><a href='" + "test_chart_js2.html" + "'>Radar Chart</a>")
 
@@ -121,24 +124,17 @@ function createMarkers(response) {
 
     
           // .setRadius(50); // try a function in here to evaluate size
-          .setRadius(Math.round(feature.properties.mag) * 10)
+          .setRadius(Math.round(parameter.avgvalue) * 10)
       // .fillColor("red")
       // Add the marker to the quakeMarkers array
-      quakeMarkers.push(quakeMarker);
+      avgvalueMarkers.push(quakeMarker);
   }
   console.log("end of quakeMarker");
   // Create a layer group made from the bike markers array, pass it into the createMap function
-  createMap(L.layerGroup(quakeMarkers), L.layerGroup(quakeMarkers));
+  createMap(L.layerGroup(avgvalueMarkers), L.layerGroup(avgvalueMarkers));
   // first quakeMarkers is real data, second time to spoof "test" variable
 }
-
-
-
-
-
-
-
-
+console.log("outside quakeMarker function");
 
 
 
@@ -150,11 +146,11 @@ function createMarkers(response) {
 // var pollutionMarker = L.circleMarker([coordinates_latitude, coordinates_longitude, { color: chooseColor(feature) })
 
   
-
+console.log("before buildSomething");
 // Perform an API call to the Citi Bike Station Information endpoint
 function buildSomething(test) {
   console.log("ran buildSomething");
-  d3.json(metadata/all).then(function(pollutant) {
+  d3.json("/metadata/all").then(function(pollutant) {
   console.log("calling json")
     // var dirtyAir = [parameter];
     // console.log(dirtyAir);
@@ -228,6 +224,9 @@ function buildSomething(test) {
   });
 
 
+
+  console.log("after buildSomething");
+
 // Update the legend's innerHTML with the last updated time and station count
 function updateLegend(time, stationCount) {
   document.querySelector(".legend").innerHTML = [
@@ -241,3 +240,6 @@ function updateLegend(time, stationCount) {
   ].join("");
 }
 }
+
+console.log("after updateLegend");
+d3.json("metadata/all/", createMarkers);
