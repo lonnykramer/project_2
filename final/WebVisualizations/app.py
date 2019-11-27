@@ -144,6 +144,48 @@ def no2barchart():
     """Return the test chart"""
     return render_template("no2barchart.html")
 
+
+@app.route("/metadata/<sample>/")
+def sample_metadata(sample):
+    """Return the MetaData for a given sample."""
+    sel = [
+        combined_US.city,
+        combined_US.parameter,
+        combined_US.avgvalue,
+        
+    ]
+
+    results = db.session.query(*sel).filter(combined_US.city == sample).all()
+
+    # Create a dictionary entry for each row of metadata information
+    sample_metadata = []
+    for result in results:
+        s={}
+
+        # s["city"] = result[0]
+        s["parameter"] = result[1]
+        s["avgvalue"] = result[2]
+        sample_metadata.append(s)
+        
+    print(sample_metadata)
+    return jsonify(sample_metadata)
+
+@app.route("/names/")
+def names():
+    """Return a list of sample names."""
+
+    # Use Pandas to perform the sql query
+    stmt = db.session.query(combined_US.city).all()
+    # df = pd.read_sql_query(stmt, db.session.bind)
+
+    flat_results = []
+    for x in stmt:
+        for i in x:
+            flat_results.append(i)
+
+    # Return a list of the column names (sample names)
+    return jsonify(flat_results)
+
 # @app.route("/cities")
 # def names():
 #     """Return a list of sample names."""
