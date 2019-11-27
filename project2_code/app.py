@@ -48,6 +48,143 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
 
+@app.route("/index.html/")
+def index2():
+    """Return the homepage."""
+    return render_template("index.html")
+
+
+@app.route("/geomap.html/")
+def geomap():
+    """Return the Geomap"""
+    return render_template("geomap.html")
+
+@app.route("/index.html/geomap.html/")
+def geomap2():
+    """Return the Geomap"""
+    return render_template("geomap.html")
+
+@app.route("/PM10.html/")
+def pm10html():
+    """Return the pm10"""
+    return render_template("pm10.html")
+
+@app.route("/PM25.html/")
+def pm25html():
+    """Return the pm25"""
+    return render_template("pm25.html")
+
+@app.route("/co_pollutant.html/")
+def cohtml():
+    """Return the co"""
+    return render_template("co_pollutant.html")
+
+@app.route("/so_pollutant.html/")
+def sohtml():
+    """Return the so"""
+    return render_template("so_pollutant.html")
+
+@app.route("/ozone_pollutant.html/")
+def o3html():
+    """Return the o3"""
+    return render_template("ozone_pollutant.html")
+
+@app.route("/no_pollutant.html/")
+def nohtml():
+    """Return the no"""
+    return render_template("no_pollutant.html")
+
+@app.route("/test_chart_js2.html/")
+def testcharthtml2():
+    """Return the test chart"""
+    return render_template("test_chart_js2.html")
+
+@app.route("/newplot1.html/")
+def newplot1html():
+    """Return the test chart"""
+    return render_template("newplot1.html")
+
+@app.route("/test_chart_js3.html/")
+def testcharthtml3():
+    """Return the test chart"""
+    return render_template("test_chart_js3.html")
+
+@app.route("/so2barchart.html/")
+def so2barchart():
+    """Return the test chart"""
+    return render_template("so2barchart.html")
+
+@app.route("/bcbarchart.html/")
+def bcbarchart():
+    """Return the test chart"""
+    return render_template("bcbarchart.html")
+
+@app.route("/pm10barchart.html/")
+def pm10barchart():
+    """Return the test chart"""
+    return render_template("pm10barchart.html")
+
+@app.route("/pm25barchart.html/")
+def pm25barchart():
+    """Return the test chart"""
+    return render_template("pm25barchart.html")
+    
+@app.route("/o3barchart.html/")
+def o3barchart():
+    """Return the test chart"""
+    return render_template("o3barchart.html")
+
+@app.route("/cobarchart.html/")
+def cobarchart():
+    """Return the test chart"""
+    return render_template("cobarchart.html")
+
+@app.route("/no2barchart.html/")
+def no2barchart():
+    """Return the test chart"""
+    return render_template("no2barchart.html")
+
+
+@app.route("/metadata/<sample>/")
+def sample_metadata(sample):
+    """Return the MetaData for a given sample."""
+    sel = [
+        combined_US.city,
+        combined_US.parameter,
+        combined_US.avgvalue,
+        
+    ]
+
+    results = db.session.query(*sel).filter(combined_US.city == sample).all()
+
+    # Create a dictionary entry for each row of metadata information
+    sample_metadata = []
+    for result in results:
+        s={}
+
+        # s["city"] = result[0]
+        s["parameter"] = result[1]
+        s["avgvalue"] = result[2]
+        sample_metadata.append(s)
+        
+    print(sample_metadata)
+    return jsonify(sample_metadata)
+
+@app.route("/names/")
+def names():
+    """Return a list of sample names."""
+
+    # Use Pandas to perform the sql query
+    stmt = db.session.query(combined_US.city).all()
+    # df = pd.read_sql_query(stmt, db.session.bind)
+
+    flat_results = []
+    for x in stmt:
+        for i in x:
+            flat_results.append(i)
+
+    # Return a list of the column names (sample names)
+    return jsonify(flat_results)
 
 # @app.route("/cities")
 # def names():
@@ -381,4 +518,4 @@ def so2():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
